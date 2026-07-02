@@ -1,0 +1,16 @@
+# Default repository ownership
+* @LanternProtocol/core-maintainers
+
+# Repository automation and release-sensitive paths
+/.github/ @LanternProtocol/core-maintainers
+/.github/workflows/ @LanternProtocol/core-maintainers
+
+# Protocol and specification-sensitive paths
+/docs/protocol-overview.md @LanternProtocol/core-maintainers
+/docs/threat-model.md @LanternProtocol/core-maintainers
+/docs/architecture.md @LanternProtocol/core-maintainers
+/docs/decisions/ @LanternProtocol/core-maintainers
+
+# Future implementation-sensitive paths
+/src/ @LanternProtocol/core-maintainers
+/tests/ @LanternProtocol/core-maintainers
