@@ -1,0 +1,85 @@
+{
+  "name": "hash-mismatch",
+  "description": "Schema-valid but semantically invalid envelope because payload_hash does not match canonical payload.",
+  "expected": {
+    "schema_valid": true,
+    "semantic_valid": false
+  },
+  "envelope": {
+    "envelope_id": "env-hash-mismatch-001",
+    "schema_version": "v0.1.0-draft",
+    "created_at": "2026-07-02T23:30:00Z",
+    "signal": {
+      "signal_type": "environment.telemetry",
+      "payload": {
+        "temperature_c": 22.1,
+        "humidity_pct": 45.0,
+        "sensor_status": "nominal"
+      },
+      "payload_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "payload_encoding": "application/json",
+      "observed_at": "2026-07-02T23:29:50Z",
+      "declared_at": "2026-07-02T23:29:49Z"
+    },
+    "source": {
+      "source_id": "sensor-alpha-01",
+      "source_type": "sensor",
+      "claimed_origin": "station-alpha",
+      "observed_origin": "station-alpha",
+      "collection_context": {
+        "transport": "mqtt",
+        "collector": "field-gateway-01"
+      }
+    },
+    "provenance": {
+      "provenance_state": "complete",
+      "provenance_chain": [
+        {
+          "actor": "field-gateway-01",
+          "event": "collected",
+          "at": "2026-07-02T23:29:50Z"
+        }
+      ],
+      "custody_events": [
+        {
+          "actor": "signalforge-ingest",
+          "event": "received",
+          "at": "2026-07-02T23:30:00Z"
+        }
+      ],
+      "transformations": [],
+      "evidence_refs": [
+        "evidence://telemetry/sensor-alpha-01/2026-07-02T23:29:50Z"
+      ]
+    },
+    "verification": {
+      "verification_state": "failed",
+      "verification_methods": [
+        "payload_hash"
+      ],
+      "verified_at": "2026-07-02T23:30:01Z",
+      "verifier_id": "signalforge-validator",
+      "failure_reasons": [
+        "payload_hash_mismatch"
+      ],
+      "confidence": {
+        "level": "none"
+      }
+    },
+    "resilience": {
+      "freshness_status": "fresh",
+      "replay_status": "no_replay_evidence",
+      "spoofing_indicators": [],
+      "ambiguity_flags": [
+        "integrity_check_failed"
+      ],
+      "degraded_mode_flags": []
+    },
+    "audit": {
+      "trace_id": "trace-env-hash-mismatch-001",
+      "decision_refs": [],
+      "audit_notes": "Initial test vector.",
+      "created_by": "signalforge-test"
+    }
+  }
+}
