@@ -1,0 +1,86 @@
+{
+  "name": "stale-signal",
+  "description": "Schema-valid envelope that marks stale freshness.",
+  "expected": {
+    "schema_valid": true,
+    "semantic_valid": true
+  },
+  "envelope": {
+    "envelope_id": "env-stale-001",
+    "schema_version": "v0.1.0-draft",
+    "created_at": "2026-07-02T23:30:00Z",
+    "expires_at": "2026-07-02T23:00:00Z",
+    "signal": {
+      "signal_type": "environment.telemetry",
+      "payload": {
+        "temperature_c": 19.0,
+        "humidity_pct": 48.5,
+        "sensor_status": "nominal"
+      },
+      "payload_hash": "sha256:a2c9d44d7056189772056e11510aedf44d220390fa7a0de00c6c09b96c0fc810",
+      "payload_encoding": "application/json",
+      "observed_at": "2026-07-02T22:00:00Z",
+      "declared_at": "2026-07-02T22:00:00Z"
+    },
+    "source": {
+      "source_id": "sensor-alpha-01",
+      "source_type": "sensor",
+      "claimed_origin": "station-alpha",
+      "observed_origin": "station-alpha",
+      "collection_context": {
+        "transport": "mqtt",
+        "collector": "field-gateway-01"
+      }
+    },
+    "provenance": {
+      "provenance_state": "complete",
+      "provenance_chain": [
+        {
+          "actor": "field-gateway-01",
+          "event": "collected",
+          "at": "2026-07-02T22:00:00Z"
+        }
+      ],
+      "custody_events": [
+        {
+          "actor": "signalforge-ingest",
+          "event": "received",
+          "at": "2026-07-02T23:30:00Z"
+        }
+      ],
+      "transformations": [],
+      "evidence_refs": [
+        "evidence://telemetry/sensor-alpha-01/2026-07-02T22:00:00Z"
+      ]
+    },
+    "verification": {
+      "verification_state": "partially_verified",
+      "verification_methods": [
+        "payload_hash",
+        "source_registry",
+        "freshness_window"
+      ],
+      "verified_at": "2026-07-02T23:30:01Z",
+      "verifier_id": "signalforge-validator",
+      "failure_reasons": [
+        "signal_stale"
+      ],
+      "confidence": {
+        "level": "medium"
+      }
+    },
+    "resilience": {
+      "freshness_status": "stale",
+      "replay_status": "no_replay_evidence",
+      "spoofing_indicators": [],
+      "ambiguity_flags": [],
+      "degraded_mode_flags": []
+    },
+    "audit": {
+      "trace_id": "trace-env-stale-001",
+      "decision_refs": [],
+      "audit_notes": "Initial test vector.",
+      "created_by": "signalforge-test"
+    }
+  }
+}
