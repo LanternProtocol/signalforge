@@ -27,10 +27,20 @@ jobs:
             CONTRIBUTING.md
             ROADMAP.md
             CHANGELOG.md
+            LICENSE
+            NOTICE
             docs/protocol-overview.md
             docs/architecture.md
             docs/threat-model.md
             docs/decisions/ADR-0001-repository-purpose.md
+            docs/decisions/ADR-0002-schema-representation.md
+            docs/rfcs/0001-signal-envelope.md
+            docs/rfcs/0002-canonical-payload-hashing-timestamps-replay.md
+            schemas/signal-envelope.schema.json
+            pyproject.toml
+            src/signalforge/__init__.py
+            src/signalforge/envelope.py
+            scripts/validate_vectors.py
             .github/CODEOWNERS
             .github/dependabot.yml
           )
@@ -46,3 +56,27 @@ jobs:
           find . -name "*.md" -not -path "./.git/*" -print0 | while IFS= read -r -d '' file; do
             test -s "$file" || { echo "Empty Markdown file: $file"; exit 1; }
           done
+
+  python-validation:
+    name: Python validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install package and dev dependencies
+        run: python -m pip install -e ".[dev]"
+
+      - name: Ruff lint
+        run: ruff check .
+
+      - name: Validate vectors
+        run: python scripts/validate_vectors.py
+
+      - name: Run tests
+        run: pytest
