@@ -1,16 +1,16 @@
 # Default repository ownership
-* @LanternProtocol/core-maintainers
+* @ShannonBrayNC
 
 # Repository automation and release-sensitive paths
-/.github/ @LanternProtocol/core-maintainers
-/.github/workflows/ @LanternProtocol/core-maintainers
+/.github/ @ShannonBrayNC
+/.github/workflows/ @ShannonBrayNC
 
 # Protocol and specification-sensitive paths
-/docs/protocol-overview.md @LanternProtocol/core-maintainers
-/docs/threat-model.md @LanternProtocol/core-maintainers
-/docs/architecture.md @LanternProtocol/core-maintainers
-/docs/decisions/ @LanternProtocol/core-maintainers
+/docs/protocol-overview.md @ShannonBrayNC
+/docs/threat-model.md @ShannonBrayNC
+/docs/architecture.md @ShannonBrayNC
+/docs/decisions/ @ShannonBrayNC
 
 # Future implementation-sensitive paths
-/src/ @LanternProtocol/core-maintainers
-/tests/ @LanternProtocol/core-maintainers
+/src/ @ShannonBrayNC
+/tests/ @ShannonBrayNC
