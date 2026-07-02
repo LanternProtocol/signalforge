@@ -5,20 +5,12 @@ on:
   pull_request:
     paths:
       - "src/**/*.py"
-      - "src/**/*.js"
-      - "src/**/*.jsx"
-      - "src/**/*.ts"
-      - "src/**/*.tsx"
       - ".github/workflows/codeql.yml"
   push:
     branches:
       - main
     paths:
       - "src/**/*.py"
-      - "src/**/*.js"
-      - "src/**/*.jsx"
-      - "src/**/*.ts"
-      - "src/**/*.tsx"
       - ".github/workflows/codeql.yml"
   schedule:
     - cron: "24 7 * * 1"
@@ -29,7 +21,7 @@ permissions:
 
 jobs:
   analyze:
-    name: Analyze
+    name: Analyze Python
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -42,7 +34,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: javascript-typescript, python
+          languages: python
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
