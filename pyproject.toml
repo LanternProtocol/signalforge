@@ -14,7 +14,7 @@ authors = [
 ]
 dependencies = [
   "jsonschema>=4.22",
-  "pydantic>=2.8"
+  "pydantic>=2.13.4"
 ]
 
 [project.optional-dependencies]
