@@ -1,0 +1,16 @@
+# Default repository ownership
+* @ShannonBrayNC
+
+# Repository automation and release-sensitive paths
+/.github/ @ShannonBrayNC
+/.github/workflows/ @ShannonBrayNC
+
+# Protocol and specification-sensitive paths
+/docs/protocol-overview.md @ShannonBrayNC
+/docs/threat-model.md @ShannonBrayNC
+/docs/architecture.md @ShannonBrayNC
+/docs/decisions/ @ShannonBrayNC
+
+# Future implementation-sensitive paths
+/src/ @ShannonBrayNC
+/tests/ @ShannonBrayNC
