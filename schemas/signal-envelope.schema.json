@@ -1,0 +1,290 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.lanternprotocol.org/signalforge/signal-envelope.schema.json",
+  "title": "SignalForge Signal Envelope",
+  "description": "Minimum viable Signal Envelope for SignalForge and Lantern Protocol.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "envelope_id",
+    "schema_version",
+    "created_at",
+    "signal",
+    "source",
+    "provenance",
+    "verification",
+    "resilience",
+    "audit"
+  ],
+  "properties": {
+    "envelope_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^v[0-9]+(\\.[0-9]+){0,2}(-[A-Za-z0-9.-]+)?$"
+    },
+    "created_at": {
+      "$ref": "#/$defs/rfc3339Timestamp"
+    },
+    "expires_at": {
+      "$ref": "#/$defs/rfc3339Timestamp"
+    },
+    "signal": {
+      "$ref": "#/$defs/signal"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    },
+    "verification": {
+      "$ref": "#/$defs/verification"
+    },
+    "resilience": {
+      "$ref": "#/$defs/resilience"
+    },
+    "audit": {
+      "$ref": "#/$defs/audit"
+    }
+  },
+  "$defs": {
+    "rfc3339Timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "signal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "signal_type",
+        "payload"
+      ],
+      "properties": {
+        "signal_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "payload": {
+          "description": "Raw or normalized signal payload. Payload trust is not implied.",
+          "type": ["object", "array", "string", "number", "integer", "boolean", "null"]
+        },
+        "payload_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "payload_encoding": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observed_at": {
+          "$ref": "#/$defs/rfc3339Timestamp"
+        },
+        "declared_at": {
+          "$ref": "#/$defs/rfc3339Timestamp"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_type"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_type": {
+          "enum": [
+            "human",
+            "device",
+            "service",
+            "sensor",
+            "system",
+            "feed",
+            "other"
+          ]
+        },
+        "claimed_origin": {
+          "type": ["string", "null"]
+        },
+        "observed_origin": {
+          "type": ["string", "null"]
+        },
+        "collection_context": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provenance_state"
+      ],
+      "properties": {
+        "provenance_state": {
+          "enum": [
+            "complete",
+            "partial",
+            "missing",
+            "conflicting",
+            "unknown"
+          ]
+        },
+        "provenance_chain": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "custody_events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "transformations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verification_state"
+      ],
+      "properties": {
+        "verification_state": {
+          "enum": [
+            "unverified",
+            "verified",
+            "partially_verified",
+            "failed",
+            "conflicting",
+            "unknown"
+          ]
+        },
+        "verification_methods": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "verified_at": {
+          "$ref": "#/$defs/rfc3339Timestamp"
+        },
+        "verifier_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "failure_reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "confidence": {
+          "type": ["number", "string", "object", "null"]
+        }
+      }
+    },
+    "resilience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "freshness_status",
+        "replay_status"
+      ],
+      "properties": {
+        "freshness_status": {
+          "enum": [
+            "fresh",
+            "stale",
+            "expired",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "replay_status": {
+          "enum": [
+            "no_replay_evidence",
+            "suspected_replay",
+            "confirmed_replay",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "spoofing_indicators": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "ambiguity_flags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "degraded_mode_flags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "trace_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "audit_notes": {
+          "type": ["string", "array", "object", "null"]
+        },
+        "created_by": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

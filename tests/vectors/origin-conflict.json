@@ -1,0 +1,88 @@
+{
+  "name": "origin-conflict",
+  "description": "Schema-valid envelope with conflicting claimed and observed origin.",
+  "expected": {
+    "schema_valid": true,
+    "semantic_valid": true
+  },
+  "envelope": {
+    "envelope_id": "env-origin-conflict-001",
+    "schema_version": "v0.1.0-draft",
+    "created_at": "2026-07-02T23:30:00Z",
+    "signal": {
+      "signal_type": "civic.field_report",
+      "payload": {
+        "event": "road-closure",
+        "severity": "moderate",
+        "reported_by": "field-observer"
+      },
+      "payload_hash": "sha256:6222558df5b67bfd599ad42841ba00c1e67b67b48431b3b61f8ed5b2e642655b",
+      "payload_encoding": "application/json",
+      "observed_at": "2026-07-02T23:29:50Z",
+      "declared_at": "2026-07-02T23:29:49Z"
+    },
+    "source": {
+      "source_id": "observer-17",
+      "source_type": "human",
+      "claimed_origin": "precinct-east",
+      "observed_origin": "precinct-west",
+      "collection_context": {
+        "transport": "mobile-app",
+        "collector": "field-gateway-02"
+      }
+    },
+    "provenance": {
+      "provenance_state": "complete",
+      "provenance_chain": [
+        {
+          "actor": "field-gateway-02",
+          "event": "collected",
+          "at": "2026-07-02T23:29:50Z"
+        }
+      ],
+      "custody_events": [
+        {
+          "actor": "signalforge-ingest",
+          "event": "received",
+          "at": "2026-07-02T23:30:00Z"
+        }
+      ],
+      "transformations": [],
+      "evidence_refs": [
+        "evidence://field-report/observer-17/2026-07-02T23:29:50Z"
+      ]
+    },
+    "verification": {
+      "verification_state": "conflicting",
+      "verification_methods": [
+        "payload_hash",
+        "origin_comparison"
+      ],
+      "verified_at": "2026-07-02T23:30:01Z",
+      "verifier_id": "signalforge-validator",
+      "failure_reasons": [
+        "claimed_observed_origin_conflict"
+      ],
+      "confidence": {
+        "level": "low"
+      }
+    },
+    "resilience": {
+      "freshness_status": "fresh",
+      "replay_status": "no_replay_evidence",
+      "spoofing_indicators": [
+        "origin_mismatch"
+      ],
+      "ambiguity_flags": [
+        "claimed_origin_conflicts_with_observed_origin"
+      ],
+      "degraded_mode_flags": []
+    },
+    "audit": {
+      "trace_id": "trace-env-origin-conflict-001",
+      "decision_refs": [],
+      "audit_notes": "Initial test vector.",
+      "created_by": "signalforge-test"
+    }
+  }
+}

@@ -22,7 +22,27 @@ Early baseline. The repository is not yet production-ready and should not be tre
 - `docs/architecture.md` — repository and system architecture notes.
 - `docs/threat-model.md` — initial adversarial model and risk categories.
 - `docs/decisions/` — architecture decision records.
+- `docs/rfcs/` — protocol proposals and draft RFCs.
+- `schemas/` — machine-readable protocol schemas.
+- `src/signalforge/` — Python reference tooling.
+- `tests/vectors/` — schema and semantic validation vectors.
 - `.github/` — repo-specific ownership, dependency, and CI configuration.
+
+## Development
+
+Install the package and development tooling:
+
+```bash
+python -m pip install -e ".[dev]"
+```
+
+Run validation and tests:
+
+```bash
+ruff check .
+python scripts/validate_vectors.py
+pytest
+```
 
 ## Contribution policy
 
@@ -30,4 +50,8 @@ Protocol-impacting changes should start as issues or proposals before implementa
 
 ## License
 
-License selection is pending. Until a license is added, all rights are reserved by default.
+Code, scripts, schemas, tests, and implementation artifacts are licensed under Apache-2.0 unless otherwise noted.
+
+Documentation, specifications, diagrams, examples, and RFC text are licensed under CC-BY-4.0 unless otherwise noted.
+
+Lantern Protocol, SignalForge, Lantern, related logos, project names, marks, and branding are reserved. See `NOTICE`.

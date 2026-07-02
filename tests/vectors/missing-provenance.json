@@ -1,0 +1,67 @@
+{
+  "name": "missing-provenance",
+  "description": "Schema-valid envelope that explicitly marks missing provenance and remains unverified.",
+  "expected": {
+    "schema_valid": true,
+    "semantic_valid": true
+  },
+  "envelope": {
+    "envelope_id": "env-missing-prov-001",
+    "schema_version": "v0.1.0-draft",
+    "created_at": "2026-07-02T23:30:00Z",
+    "signal": {
+      "signal_type": "environment.telemetry",
+      "payload": {
+        "temperature_c": 21.6,
+        "humidity_pct": 44.1,
+        "sensor_status": "nominal"
+      },
+      "payload_hash": "sha256:deee747cf5fc213cc2983eabdf225c7fc3292ca9301a2e200be6f4681345843a",
+      "payload_encoding": "application/json",
+      "observed_at": "2026-07-02T23:29:50Z",
+      "declared_at": "2026-07-02T23:29:49Z"
+    },
+    "source": {
+      "source_id": "sensor-alpha-01",
+      "source_type": "sensor",
+      "claimed_origin": "station-alpha",
+      "observed_origin": "station-alpha",
+      "collection_context": {
+        "transport": "mqtt",
+        "collector": "field-gateway-01"
+      }
+    },
+    "provenance": {
+      "provenance_state": "missing",
+      "provenance_chain": [],
+      "custody_events": [],
+      "transformations": [],
+      "evidence_refs": []
+    },
+    "verification": {
+      "verification_state": "unverified",
+      "verification_methods": [],
+      "verified_at": "2026-07-02T23:30:01Z",
+      "verifier_id": "signalforge-validator",
+      "failure_reasons": [
+        "missing_provenance"
+      ],
+      "confidence": {
+        "level": "low"
+      }
+    },
+    "resilience": {
+      "freshness_status": "fresh",
+      "replay_status": "no_replay_evidence",
+      "spoofing_indicators": [],
+      "ambiguity_flags": [],
+      "degraded_mode_flags": []
+    },
+    "audit": {
+      "trace_id": "trace-env-missing-prov-001",
+      "decision_refs": [],
+      "audit_notes": "Missing provenance remains explicit.",
+      "created_by": "signalforge-test"
+    }
+  }
+}

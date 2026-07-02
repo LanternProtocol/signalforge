@@ -1,0 +1,97 @@
+{
+  "name": "degraded-mode",
+  "description": "Schema-valid envelope that explicitly carries degraded-mode collection flags.",
+  "expected": {
+    "schema_valid": true,
+    "semantic_valid": true
+  },
+  "envelope": {
+    "envelope_id": "env-degraded-001",
+    "schema_version": "v0.1.0-draft",
+    "created_at": "2026-07-02T23:30:00Z",
+    "signal": {
+      "signal_type": "emergency.backup_report",
+      "payload": {
+        "event": "backup-radio-report",
+        "message": "intersection signal outage observed"
+      },
+      "payload_hash": "sha256:89c9895f00a3dde7a25f04fb17d93f207dfad01734a19ee739f5c5307c418ae7",
+      "payload_encoding": "application/json",
+      "observed_at": "2026-07-02T23:29:50Z",
+      "declared_at": "2026-07-02T23:29:49Z"
+    },
+    "source": {
+      "source_id": "radio-operator-03",
+      "source_type": "human",
+      "claimed_origin": "eoc-backup-channel",
+      "observed_origin": "vhf-relay-2",
+      "collection_context": {
+        "transport": "voice-radio",
+        "collector": "manual-entry",
+        "degraded_conditions": [
+          "network_outage",
+          "gps_unavailable"
+        ]
+      }
+    },
+    "provenance": {
+      "provenance_state": "partial",
+      "provenance_chain": [
+        {
+          "actor": "manual-entry",
+          "event": "transcribed",
+          "at": "2026-07-02T23:29:50Z"
+        }
+      ],
+      "custody_events": [
+        {
+          "actor": "signalforge-ingest",
+          "event": "received",
+          "at": "2026-07-02T23:30:00Z"
+        }
+      ],
+      "transformations": [
+        {
+          "type": "voice_to_text_manual_entry",
+          "actor": "operator"
+        }
+      ],
+      "evidence_refs": [
+        "evidence://radio/vhf-relay-2/2026-07-02T23:29:50Z"
+      ]
+    },
+    "verification": {
+      "verification_state": "partially_verified",
+      "verification_methods": [
+        "manual_review"
+      ],
+      "verified_at": "2026-07-02T23:30:01Z",
+      "verifier_id": "signalforge-validator",
+      "failure_reasons": [
+        "degraded_collection_context"
+      ],
+      "confidence": {
+        "level": "medium"
+      }
+    },
+    "resilience": {
+      "freshness_status": "fresh",
+      "replay_status": "unknown",
+      "spoofing_indicators": [],
+      "ambiguity_flags": [
+        "limited_source_corroboration"
+      ],
+      "degraded_mode_flags": [
+        "network_outage",
+        "gps_unavailable",
+        "manual_entry"
+      ]
+    },
+    "audit": {
+      "trace_id": "trace-env-degraded-001",
+      "decision_refs": [],
+      "audit_notes": "Initial test vector.",
+      "created_by": "signalforge-test"
+    }
+  }
+}
