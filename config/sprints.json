@@ -10,6 +10,34 @@
   },
   "sprints": [
     {
+      "id": "SFG-ONBOARD-SHANNON-REPOS",
+      "repository_full_name": "LanternProtocol/signalforge",
+      "title": "Onboard ShannonBrayNC Lantern repositories into sprint registry",
+      "issue": 17,
+      "priority": 105,
+      "status": "ready",
+      "area": "repo-onboarding",
+      "labels": ["sprint:ready", "area:ops", "type:onboarding"],
+      "completion_tests": [
+        {
+          "type": "manual-github-setting-check",
+          "name": "ShannonBrayNC Lantern repo visibility confirmed",
+          "evidence_required": "Issue #17 records which ShannonBrayNC Lantern repositories are visible to the connector."
+        },
+        {
+          "type": "manual-file-check",
+          "name": "repo registry updated",
+          "evidence_required": "Each visible ShannonBrayNC Lantern repository is enabled in config/repositories.json, while unavailable repositories remain disabled with an onboarding note."
+        }
+      ],
+      "documentation_targets": ["config/repositories.json", "config/sprints.json"],
+      "done_definition": [
+        "Visible ShannonBrayNC Lantern repositories are enabled in the registry.",
+        "Each enabled repository has at least one measurable sprint.",
+        "Unavailable repositories remain represented as onboarding work instead of being silently ignored."
+      ]
+    },
+    {
       "id": "SFG-ADMIN-001",
       "repository_full_name": "LanternProtocol/signalforge",
       "title": "Enable main-branch ruleset and GitHub security controls",
