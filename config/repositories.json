@@ -22,6 +22,33 @@
       "enabled": true,
       "ci_required_checks": [],
       "notes": "Community health defaults visible to the connector."
+    },
+    {
+      "repository_full_name": "ShannonBrayNC/Lantern-Civic",
+      "default_branch": "main",
+      "visibility": "unknown",
+      "role": "pending-onboarding",
+      "enabled": false,
+      "ci_required_checks": [],
+      "notes": "Expected Lantern repo under ShannonBrayNC. Not visible to the connector yet. Tracked by issue #17."
+    },
+    {
+      "repository_full_name": "ShannonBrayNC/Lantern-IP",
+      "default_branch": "main",
+      "visibility": "unknown",
+      "role": "pending-onboarding",
+      "enabled": false,
+      "ci_required_checks": [],
+      "notes": "Expected Lantern repo under ShannonBrayNC. Not visible to the connector yet. Tracked by issue #17."
+    },
+    {
+      "repository_full_name": "ShannonBrayNC/Lantern-Auto-TireTrust",
+      "default_branch": "main",
+      "visibility": "unknown",
+      "role": "pending-onboarding",
+      "enabled": false,
+      "ci_required_checks": [],
+      "notes": "Expected Lantern repo under ShannonBrayNC. Not visible to the connector yet. Tracked by issue #17."
     }
   ]
 }
