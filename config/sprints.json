@@ -1,0 +1,120 @@
+{
+  "schema_version": "v0.1.0-draft",
+  "selection_policy": {
+    "repo_order": "round_robin",
+    "max_items_per_repo_per_run": 1,
+    "skip_blocked": true,
+    "require_measurable_tests": true,
+    "require_documentation_update": true,
+    "require_default_branch_sync": true
+  },
+  "sprints": [
+    {
+      "id": "SFG-ADMIN-001",
+      "repository_full_name": "LanternProtocol/signalforge",
+      "title": "Enable main-branch ruleset and GitHub security controls",
+      "issue": 6,
+      "priority": 100,
+      "status": "ready",
+      "area": "security-governance",
+      "labels": ["sprint:ready", "area:security", "type:admin-control"],
+      "completion_tests": [
+        {
+          "type": "manual-github-setting-check",
+          "name": "main branch rejects direct pushes",
+          "evidence_required": "Issue comment or review note confirming direct push protection is active."
+        },
+        {
+          "type": "manual-github-setting-check",
+          "name": "required checks configured",
+          "evidence_required": "Issue comment listing required checks for Repository baseline, Python validation, and CodeQL."
+        }
+      ],
+      "documentation_targets": ["docs/admin/github-repository-controls.md"],
+      "done_definition": [
+        "All acceptance criteria on issue #6 are checked or explicitly documented as unavailable.",
+        "Default branch is current after completion."
+      ]
+    },
+    {
+      "id": "SFG-RFC-002",
+      "repository_full_name": "LanternProtocol/signalforge",
+      "title": "Accept or revise RFC-0002 canonical hashing and replay semantics",
+      "issue": 7,
+      "priority": 95,
+      "status": "ready",
+      "area": "protocol",
+      "labels": ["sprint:ready", "area:protocol", "type:rfc"],
+      "completion_tests": [
+        {
+          "type": "automated-test",
+          "name": "canonical hash vectors pass",
+          "command": "python scripts/validate_vectors.py"
+        },
+        {
+          "type": "automated-test",
+          "name": "unit tests pass",
+          "command": "pytest"
+        },
+        {
+          "type": "documentation-review",
+          "name": "RFC-0002 status is updated",
+          "evidence_required": "RFC status is changed from Draft to Accepted or a review note explains remaining blockers."
+        }
+      ],
+      "documentation_targets": [
+        "docs/rfcs/0002-canonical-payload-hashing-timestamps-replay.md",
+        "CHANGELOG.md"
+      ],
+      "done_definition": [
+        "RFC-0002 acceptance criteria are satisfied or converted to follow-up issues.",
+        "Validation vectors cover accepted semantics.",
+        "CI is green before merge."
+      ]
+    },
+    {
+      "id": "SFG-ISSUE-002-CLOSEOUT",
+      "repository_full_name": "LanternProtocol/signalforge",
+      "title": "Close out RFC-0001 tracking issue",
+      "issue": 2,
+      "priority": 80,
+      "status": "ready",
+      "area": "project-hygiene",
+      "labels": ["sprint:ready", "area:ops", "type:issue-hygiene"],
+      "completion_tests": [
+        {
+          "type": "manual-issue-check",
+          "name": "RFC-0001 deliverables verified",
+          "evidence_required": "Issue comment links merged RFC, schema, vectors, and validation harness."
+        }
+      ],
+      "documentation_targets": ["docs/rfcs/0001-signal-envelope.md"],
+      "done_definition": [
+        "Issue #2 is closed as completed or updated with explicit remaining work.",
+        "No orphaned acceptance criteria remain."
+      ]
+    },
+    {
+      "id": "ORG-HEALTH-001",
+      "repository_full_name": "LanternProtocol/.github",
+      "title": "Review organization community-health defaults",
+      "issue": null,
+      "priority": 70,
+      "status": "ready",
+      "area": "organization-governance",
+      "labels": ["sprint:ready", "area:governance", "type:documentation"],
+      "completion_tests": [
+        {
+          "type": "manual-file-check",
+          "name": "community health files exist",
+          "evidence_required": "Confirm profile README, CONTRIBUTING, SECURITY, SUPPORT, CODE_OF_CONDUCT, PR template, and issue templates exist."
+        }
+      ],
+      "documentation_targets": ["LanternProtocol/.github"],
+      "done_definition": [
+        "Missing or mismatched defaults are fixed or represented as issues.",
+        "Default branch is current after changes."
+      ]
+    }
+  ]
+}
