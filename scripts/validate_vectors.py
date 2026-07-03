@@ -39,7 +39,8 @@ def validate_vector(path: Path, validator: Draft202012Validator) -> tuple[bool, 
             f"schema expectation mismatch: expected {expected_schema_valid}, got {schema_valid}"
         )
         for error in schema_errors:
-            errors.append(f"schema error at {'/'.join(map(str, error.path))}: {error.message}")
+            path_text = "/".join(map(str, error.path))
+            errors.append(f"schema error at {path_text}: {error.message}")
 
     pydantic_valid = True
     try:
@@ -55,13 +56,15 @@ def validate_vector(path: Path, validator: Draft202012Validator) -> tuple[bool, 
         actual_hash = sha256_payload_hash(envelope["signal"].get("payload"))
         if payload_hash != actual_hash:
             semantic_errors.append(
-                f"payload_hash mismatch: expected {actual_hash}, envelope has {payload_hash}"
+                "payload_hash mismatch: "
+                f"expected {actual_hash}, envelope has {payload_hash}"
             )
 
     semantic_valid = schema_valid and pydantic_valid and not semantic_errors
     if semantic_valid != expected_semantic_valid:
         errors.append(
-            f"semantic expectation mismatch: expected {expected_semantic_valid}, got {semantic_valid}"
+            f"semantic expectation mismatch: expected {expected_semantic_valid}, "
+            f"got {semantic_valid}"
         )
         errors.extend(semantic_errors)
 
