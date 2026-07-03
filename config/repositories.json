@@ -1,0 +1,27 @@
+{
+  "schema_version": "v0.1.0-draft",
+  "repositories": [
+    {
+      "repository_full_name": "LanternProtocol/signalforge",
+      "default_branch": "main",
+      "visibility": "public",
+      "role": "orchestrator-and-reference-implementation",
+      "enabled": true,
+      "ci_required_checks": [
+        "CI / Repository baseline",
+        "CI / Python validation",
+        "CodeQL / Analyze Python"
+      ],
+      "notes": "Central SignalForge orchestration and protocol repository."
+    },
+    {
+      "repository_full_name": "LanternProtocol/.github",
+      "default_branch": "main",
+      "visibility": "public",
+      "role": "community-health-and-defaults",
+      "enabled": true,
+      "ci_required_checks": [],
+      "notes": "Community health defaults visible to the connector."
+    }
+  ]
+}
