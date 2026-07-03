@@ -30,7 +30,8 @@ def test_vectors_match_schema_and_semantic_expectations() -> None:
 
 
 def test_schema_accepts_valid_minimal_envelope() -> None:
-    vector = json.loads((VECTOR_DIR / "valid-minimal-envelope.json").read_text(encoding="utf-8"))
+    vector_path = VECTOR_DIR / "valid-minimal-envelope.json"
+    vector = json.loads(vector_path.read_text(encoding="utf-8"))
     envelope = vector["envelope"]
 
     SignalEnvelope.model_validate(envelope)

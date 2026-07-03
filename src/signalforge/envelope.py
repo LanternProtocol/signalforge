@@ -16,6 +16,7 @@ FreshnessStatus = Literal["fresh", "stale", "expired", "unknown", "not_applicabl
 ReplayStatus = Literal[
     "no_replay_evidence", "suspected_replay", "confirmed_replay", "unknown", "not_applicable"
 ]
+SCHEMA_VERSION_PATTERN = r"^v[0-9]+(\.[0-9]+){0,2}(-[A-Za-z0-9.-]+)?$"
 
 
 class StrictModel(BaseModel):
@@ -75,7 +76,7 @@ class AuditSection(StrictModel):
 
 class SignalEnvelope(StrictModel):
     envelope_id: str = Field(min_length=1)
-    schema_version: str = Field(pattern=r"^v[0-9]+(\.[0-9]+){0,2}(-[A-Za-z0-9.-]+)?$")
+    schema_version: str = Field(pattern=SCHEMA_VERSION_PATTERN)
     created_at: datetime
     expires_at: datetime | None = None
     signal: SignalSection
